@@ -50,11 +50,13 @@ def start_game(ai_settings, screen, stats, sb, ship, aliens, bullets):
     stats.reset_stats()
     stats.game_active = True
 
+    sb.prep_images()
+
     # Reset the scoreboard images
-    sb.prep_score()
-    sb.prep_high_score()
-    sb.prep_level()
-    sb.prep_ships()
+    #sb.prep_score()
+    #sb.prep_high_score()
+    #sb.prep_level()
+    #sb.prep_ships()
 
     # Empty the list of aliens and bullets
     aliens.empty()
@@ -105,6 +107,10 @@ def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets):
             bullets.remove(bullet)
     check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, bullets)
 
+def start_new_level(ai_settings, bullets):
+    bullets.empty()
+    ai_settings.increase_speed()
+
 def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, bullets):
     """Respond to bullet-alien collision"""
     # Remove any bullets and aliens that have collided
@@ -116,9 +122,8 @@ def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, 
         check_high_score(stats, sb)
     if len(aliens) == 0:
         # If entire fleet is destroyed, start a new level
-        bullets.empty()
-        ai_settings.increase_speed()
-
+        start_new_level(ai_settings, bullets)
+        
         # Increase level
         stats.level += 1
         sb.prep_level()
