@@ -26,6 +26,9 @@ class Settings():
         # How quickly the alien point value increases
         self.score_scale = 1.5
 
+        # Create file for high score
+        self.filename = 'alien_invasion/high_score.txt'
+
         self.initialize_dynamic_settings()
 
     def initialize_dynamic_settings(self):
