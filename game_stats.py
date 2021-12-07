@@ -10,7 +10,9 @@ class GameStats():
         self.game_active = False
 
         # High score should never be reset
-        self.high_score = 0
+        with open(ai_settings.filename, 'r') as file_object:
+            self.high_score = int(file_object.read())
+        #self.high_score = 0
 
     def reset_stats(self):
         """Initialize statistics that can change during the game"""
