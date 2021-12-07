@@ -33,6 +33,7 @@ def check_events(ai_settings, screen, stats, sb, play_button, ship, aliens, bull
     """Respond to keypresses and events"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+
             sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
